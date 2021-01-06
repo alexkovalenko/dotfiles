@@ -23,8 +23,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
         endif
 
 call plug#begin()
-  Plug 'preservim/nerdtree' 
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'preservim/nerdtree'  
+  Plug 'Xuyuanp/nerdtree-git-plugin' 
   Plug 'sheerun/vim-polyglot'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -61,6 +61,10 @@ nnoremap <leader>m :Marks<CR>
 
 let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
+
+let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
+let g:NERDTreeGitStatusShowClean = 1
+let g:NERDTreeGitStatusConcealBrackets = 1
 
 "Get Files
 command! -bang -nargs=? -complete=dir Files
