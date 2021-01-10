@@ -20,7 +20,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
+endif
 
 call plug#begin()
   Plug 'preservim/nerdtree'  
@@ -29,6 +29,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-rooter'
+  Plug 'jgdavey/tslime.vim'
 call plug#end()
 
 " NERDTree config
@@ -89,4 +90,6 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " run python
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F10> :w<CR>:call SendToTmux("python3 ".expand('%:p')."\n")<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:call SendToTmux("python3 ".expand('%:p')."\n")<CR>
