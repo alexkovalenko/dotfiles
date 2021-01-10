@@ -87,9 +87,17 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" tslime config
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
 
 " run python
+function RunPythonInTmux()
+  call SendToTmux("clear\n")
+  call SendToTmux("python3 ".expand('%:p')."\n")
+endfunction
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python map <buffer> <F10> :w<CR>:call SendToTmux("python3 ".expand('%:p')."\n")<CR>
+autocmd FileType python map <buffer> <F8> :w<CR>:call RunPythonInTmux() <CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F10> <esc>:w<CR>:call SendToTmux("python3 ".expand('%:p')."\n")<CR>
+autocmd FileType python imap <buffer> <F8> <esc>:w<CR>:call RunPythonInTmux()<CR>
