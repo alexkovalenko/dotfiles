@@ -15,6 +15,7 @@ set nocompatible
 
 highlight Comment ctermfg=green
 
+noremap Q !!$SHELL <CR>
 " plugin configuration 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs

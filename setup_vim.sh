@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo apt install vim
+sudo apt install --yes vim
 
 ln -sfv $(pwd)/vimrc $HOME/.vimrc
 
-sudo apt install fzf
-sudo apt install ripgrep
-sudo apt install universal-ctags
-sudo apt install silversearcher-ag
-sudo apt install fd-find
+sudo apt install --yes fzf
+sudo apt install --yes ripgrep
+sudo apt install --yes universal-ctags
+sudo apt install --yes silversearcher-ag
+sudo apt install --yes fd-find
