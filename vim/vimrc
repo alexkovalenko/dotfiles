@@ -9,13 +9,16 @@ set autoindent
 set backspace=indent,eol,start
 set ruler
 set showcmd
-set number
+set number relativenumber
 set hlsearch
 set nocompatible
+set splitbelow splitright
 
 highlight Comment ctermfg=green
 
+" run command from current line
 noremap Q !!$SHELL <CR>
+
 " plugin configuration 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -31,6 +34,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-rooter'
   Plug 'jgdavey/tslime.vim'
+  Plug 'jreybert/vimagit'
 call plug#end()
 
 " NERDTree config
