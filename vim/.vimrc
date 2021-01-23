@@ -13,6 +13,8 @@ set number relativenumber
 set hlsearch
 set nocompatible
 set splitbelow splitright
+set shortmess=a
+set cmdheight=2
 
 highlight Comment ctermfg=green
 
