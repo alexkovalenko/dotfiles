@@ -1,11 +1,8 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
+-- __  __                                _ 
+-- \ \/ /_ __ ___   ___  _ __   __ _  __| |
+--  \  /| '_ ` _ \ / _ \| '_ \ / _` |/ _` |
+--  /  \| | | | | | (_) | | | | (_| | (_| |
+-- /_/\_\_| |_| |_|\___/|_| |_|\__,_|\__,_|
 
 import XMonad
 import Data.Monoid
@@ -16,6 +13,7 @@ import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -190,7 +188,7 @@ mySpacing = spacingRaw True             -- Only for >1 window
                        (Border 5 5 5 5) -- Size of window gaps
                        True             -- Enable window gaps
 
-myLayout = mySpacing $ avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = smartBorders $ mySpacing $ avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
