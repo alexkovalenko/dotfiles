@@ -15,6 +15,7 @@ import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import XMonad.Layout.Spacing
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -53,8 +54,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#282c34"
+myFocusedBorderColor = "#46d9ff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -182,7 +183,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+mySpacing = spacingRaw True             -- Only for >1 window
+                       -- The bottom edge seems to look narrower than it is
+                       (Border 0 15 10 10) -- Size of screen edge gaps
+                       True             -- Enable screen edge gaps
+                       (Border 5 5 5 5) -- Size of window gaps
+                       True             -- Enable window gaps
+
+myLayout = mySpacing $ avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -246,7 +254,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "compton &" 
+    spawnOnce "compton --config /home/alexkov/.config/compton.conf&" 
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
