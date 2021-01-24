@@ -36,7 +36,6 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'airblade/vim-rooter'
   Plug 'jgdavey/tslime.vim'
-  Plug 'jreybert/vimagit'
   Plug 'lilydjwg/colorizer'
 call plug#end()
 
@@ -95,6 +94,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 " tslime config
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
