@@ -37,6 +37,7 @@ call plug#begin()
   Plug 'airblade/vim-rooter'
   Plug 'jgdavey/tslime.vim'
   Plug 'jreybert/vimagit'
+  Plug 'lilydjwg/colorizer'
 call plug#end()
 
 " NERDTree config
