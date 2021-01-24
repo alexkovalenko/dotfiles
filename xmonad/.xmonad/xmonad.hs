@@ -3,8 +3,9 @@
 --  \  /| '_ ` _ \ / _ \| '_ \ / _` |/ _` |
 --  /  \| | | | | | (_) | | | | (_| | (_| |
 -- /_/\_\_| |_| |_|\___/|_| |_|\__,_|\__,_|
+-- 
 
-import XMonad
+import XMonad hiding ( (|||) )
 import Data.Monoid
 import System.Exit
 import XMonad.Hooks.ManageDocks
@@ -14,6 +15,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
+import XMonad.Layout.LayoutCombinators
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -78,6 +80,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
+    -- jump directly to the Full layout
+    , ((modm,               xK_f     ), sendMessage $ JumpToLayout "Full")  
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
 
