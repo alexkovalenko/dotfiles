@@ -71,6 +71,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
+    -- switch layout
+    , ((mod4Mask,           xK_space ), spawn "$HOME/.xmonad/layout_switch.sh")
+
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
@@ -82,6 +85,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- jump directly to the Full layout
     , ((modm,               xK_f     ), sendMessage $ JumpToLayout "Full")  
+    
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
 
