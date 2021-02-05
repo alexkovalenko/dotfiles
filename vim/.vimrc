@@ -100,12 +100,14 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
-" run python
+" run something 
 function RunPythonInTmux()
   call SendToTmux("clear\n")
   call SendToTmux("python3 ".expand('%:p')."\n")
 endfunction
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType java map <buffer> <F9> :w<CR>:exec '!java' shellescape(@%, 1)<CR>
 autocmd FileType python map <buffer> <F8> :w<CR>:call RunPythonInTmux() <CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType java imap <buffer> <F9> <esc>:w<CR>:exec '!java' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F8> <esc>:w<CR>:call RunPythonInTmux()<CR>
