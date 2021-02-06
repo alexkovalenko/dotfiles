@@ -19,6 +19,7 @@ import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Fullscreen (fullscreenFull)
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
+import XMonad.Actions.GridSelect
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -27,7 +28,7 @@ myTerminal      = "gnome-terminal"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses :: Bool
@@ -42,7 +43,7 @@ myBorderWidth   = 2
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -69,22 +70,25 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
-
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm,               xK_d     ), spawn "dmenu_run")
 
     -- switch layout
-    , ((mod4Mask,           xK_space ), spawn "$HOME/.xmonad/layout_switch.sh")
+    , ((modm,               xK_space ), spawn "$HOME/.xmonad/layout_switch.sh")
+
+    -- grid select
+    , ((modm,               xK_g     ), goToSelected defaultGSConfig)
+    
+    -- grid select
+    , ((modm,               xK_p     ), spawnSelected defaultGSConfig["google-chrome","vlc"])
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((mod1Mask,           xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    , ((mod1Mask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- jump directly to the Full layout
     , ((modm,               xK_f     ), sendMessage $ Toggle NBFULL)  
@@ -263,7 +267,6 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "compton --config /home/alexkov/.config/compton.conf&" 
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
