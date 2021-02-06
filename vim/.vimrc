@@ -15,6 +15,7 @@ set nocompatible
 set splitbelow splitright
 set shortmess=a
 set cmdheight=2
+set incsearch
 
 highlight Comment ctermfg=green
 
