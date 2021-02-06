@@ -16,6 +16,9 @@ import qualified Data.Map        as M
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutCombinators
+import XMonad.Layout.Fullscreen (fullscreenFull)
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -84,7 +87,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- jump directly to the Full layout
-    , ((modm,               xK_f     ), sendMessage $ JumpToLayout "Full")  
+    , ((modm,               xK_f     ), sendMessage $ Toggle NBFULL)  
     
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
@@ -196,7 +199,7 @@ mySpacing = spacingRaw True             -- Only for >1 window
                        (Border 5 5 5 5) -- Size of window gaps
                        True             -- Enable window gaps
 
-myLayout = smartBorders $ mySpacing $ avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = smartBorders $ mySpacing $ avoidStruts $ mkToggle(NBFULL ?? NOBORDERS ?? EOT) $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
