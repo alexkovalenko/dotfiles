@@ -1,4 +1,9 @@
-" general stuff
+" __     __  _             
+" \ \   / / (_)  _ __ ___  
+"  \ \ / /  | | | '_ ` _ \ 
+"   \ V /   | | | | | | | |
+"    \_/    |_| |_| |_| |_|
+"                          
 syntax on
 set expandtab
 set textwidth=120
@@ -16,6 +21,14 @@ set splitbelow splitright
 set shortmess=a
 set cmdheight=2
 set incsearch
+set ignorecase
+set smartcase
+set wildmenu
+set noerrorbells
+set title
+set spell
+set backupdir=~/.cache/vim
+set dir=~/.cache/vim
 
 highlight Comment ctermfg=green
 
