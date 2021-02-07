@@ -26,7 +26,6 @@ set smartcase
 set wildmenu
 set noerrorbells
 set title
-set spell
 set backupdir=~/.cache/vim
 set dir=~/.cache/vim
 
@@ -52,6 +51,8 @@ call plug#begin()
   Plug 'jgdavey/tslime.vim'
   Plug 'lilydjwg/colorizer'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'yegappan/taglist'
+  Plug 'dense-analysis/ale'
 call plug#end()
 
 " NERDTree config
@@ -115,6 +116,10 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
+" taglist config
+nnoremap <silent> <F12> :TlistToggle<CR>
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
 " run something 
 function RunPythonInTmux()
   call SendToTmux("clear\n")
