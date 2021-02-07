@@ -51,6 +51,7 @@ call plug#begin()
   Plug 'airblade/vim-rooter'
   Plug 'jgdavey/tslime.vim'
   Plug 'lilydjwg/colorizer'
+  Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " NERDTree config
