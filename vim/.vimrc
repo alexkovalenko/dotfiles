@@ -53,6 +53,7 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs'
   Plug 'yegappan/taglist'
   Plug 'dense-analysis/ale'
+  Plug 'preservim/nerdcommenter'
 call plug#end()
 
 " NERDTree config
